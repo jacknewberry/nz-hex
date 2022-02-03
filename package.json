@@ -12,7 +12,10 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "yarn type-check -- --watch",
+    "test": "jest"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.2",
@@ -21,5 +24,16 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.4.0",
+    "@types/react-test-renderer": "^17.0.1",
+    "babel-jest": "^27.4.6",
+    "babel-preset-gatsby": "^2.6.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.4.7",
+    "react-test-renderer": "^17.0.2"
   }
 }
