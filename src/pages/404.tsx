@@ -1,6 +1,5 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
-import { FC } from 'react'
 
 // styles
 const pageStyles = {
