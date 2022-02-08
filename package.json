@@ -14,8 +14,13 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "type-check": "tsc --noEmit",
-    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "ts-standard --fix"
+  },
+  "ts-standard": {
+    "ignore": [
+      "**/*.js"
+    ]
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.2",
@@ -23,7 +28,8 @@
     "gatsby-plugin-styled-components": "^5.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "ts-standard": "^11.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
