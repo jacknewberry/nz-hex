@@ -1,9 +1,8 @@
 import React, { CSSProperties, FC } from 'react'
 import { SvgArea } from '../components/SvgArea'
-import { Hexagon } from '../components/Hexagon'
 import { HexGrid } from '../components/HexGrid'
-import { HexGroup } from '../components/HexGroup'
 import { Wrapper } from './index.styles'
+import { HexTile } from '../components/HexTile'
 
 // styles
 const pageStyles: CSSProperties = {
@@ -36,12 +35,11 @@ const IndexPage: FC = () => {
         <SvgArea style={svgStyles}>
           {/* Hexgrid supports odd-r layout - odd rows to the right */}
           <HexGrid size={size}>
-            {/* Should x, y / col,row  be passed via context or renderProps? */}
-            <HexGroup col={1} row={2}><Hexagon size={size} fill='#004400' /></HexGroup>
-            <HexGroup col={1} row={3}><Hexagon size={size} fill='#006600' /></HexGroup>
-            <HexGroup col={2} row={4}><Hexagon size={size} fill='#008800' /></HexGroup>
-            <HexGroup col={1} row={5}><Hexagon size={size} fill='#00aa00' /></HexGroup>
-            <HexGroup col={0} row={7}><Hexagon size={size} fill='#00cc00' /></HexGroup>
+            <HexTile col={1} row={2} fill='#004400' name='North Shore North' />
+            <HexTile col={1} row={3} fill='#006600' name='South Auckland' />
+            <HexTile col={2} row={4} fill='#008800' name='Waikato and Bays' />
+            <HexTile col={1} row={5} fill='#00aa00' name='Taranaki to Wellington' />
+            <HexTile col={0} row={7} fill='#00cc00' name='South Island' />
           </HexGrid>
         </SvgArea>
       </Wrapper>

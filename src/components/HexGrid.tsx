@@ -1,22 +1,30 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback, useContext } from 'react'
 import { ROOT_3 } from './Hexagon'
 
 interface HexGridContextType {
+  size: number
   getPixelCoordinates: (col: number, row: number) => { x: number, y: number }
 }
 const HexGridContextDefault: HexGridContextType = {
+  size: 15,
   getPixelCoordinates: () => ({ x: 0, y: 0 })
 }
 export const HexGridContext = React.createContext(HexGridContextDefault)
+export const useHexGrid = () => useContext(HexGridContext)
 
-export const HexGrid: FC<{ size: number}> = ({ children, size = 10 }) => {
-  const getPixelCoordinates: HexGridContextType['getPixelCoordinates'] = (col, row) => {
+export const HexGrid: FC<{ size: number}> = ({ size = HexGridContextDefault.size, children }) => {
+  const getPixelCoordinates: HexGridContextType['getPixelCoordinates'] = useCallback((col, row) => {
     const width = ROOT_3 * size
     const height = size * 1.5
     return {
       x: col * width + (row % 2) * width / 2,
       y: row * height
     }
+  }, [size])
+
+  const value: HexGridContextType = {
+    size,
+    getPixelCoordinates
   }
-  return <HexGridContext.Provider value={{ getPixelCoordinates }}>{children}</HexGridContext.Provider>
+  return <HexGridContext.Provider value={value}>{children}</HexGridContext.Provider>
 }

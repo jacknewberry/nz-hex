@@ -1,5 +1,6 @@
-import styles from 'styled-components'
+import styled from 'styled-components'
 
-export const Wrapper = styles.div`
+export const Wrapper = styled.div`
+  //TODO: Does this have any effect?
   height: 60%
 `
