@@ -21,14 +21,13 @@ export const HexTile: FC<HexTileProps> = ({ row, col, fill, name }) => {
 
 const StyledHexagon = styled(Hexagon)`
   cursor: pointer;
-  transition: all 0.3s; // speed of return to normal
+  transition: all 0.2s; // speed of return to normal
   filter: drop-shadow(0px 0px 0px #08f8);
 
   &:hover {
-    transition: all 0.1s;
+    transition: all 0.05s;
 
-    filter: drop-shadow(0px 3px 3px rgba(91, 143, 212, 0.69))
-            brightness(120%);
+    filter: drop-shadow(0px 3px 3px rgba(91, 143, 212, 0.69)) brightness(120%);
     transform: translateY(-2px);
   }
 `

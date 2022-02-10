@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC } from 'react'
 import { SvgArea } from '../components/SvgArea'
 import { HexGrid } from '../components/HexGrid'
-import { Wrapper } from './index.styles'
+import { Wrapper } from '../pageSupport/index.styles'
 import { HexTile } from '../components/HexTile'
 
 // styles
@@ -23,18 +23,16 @@ const svgStyles: CSSProperties = {
 }
 
 const IndexPage: FC = () => {
-  const size = 24
-
   return (
     <main style={pageStyles}>
-      <title>Home Page</title>
+      <title>NZ Hex</title>
       <h1 style={headingStyles}>
         New Zealand Population 🇳🇿
       </h1>
       <Wrapper>
         <SvgArea style={svgStyles}>
           {/* Hexgrid supports odd-r layout - odd rows to the right */}
-          <HexGrid size={size}>
+          <HexGrid size={24}>
             <HexTile col={1} row={2} fill='#004400' name='North Shore North' />
             <HexTile col={1} row={3} fill='#006600' name='South Auckland' />
             <HexTile col={2} row={4} fill='#008800' name='Waikato and Bays' />

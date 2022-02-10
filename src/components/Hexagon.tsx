@@ -32,7 +32,6 @@ export const Hexagon: FC<HexagonProps> = ({ x = 0, y = 0, size, ...props }) => {
     <polygon
       points={points}
       transform={`translate(${x},${y})`}
-      stroke='black'
       {...props}
     />
   )

@@ -10,9 +10,9 @@ const HexGridContextDefault: HexGridContextType = {
   getPixelCoordinates: () => ({ x: 0, y: 0 })
 }
 export const HexGridContext = React.createContext(HexGridContextDefault)
-export const useHexGrid = () => useContext(HexGridContext)
+export const useHexGrid = (): HexGridContextType => useContext(HexGridContext)
 
-export const HexGrid: FC<{ size: number}> = ({ size = HexGridContextDefault.size, children }) => {
+export const HexGrid: FC<{ size: number }> = ({ size, children }) => {
   const getPixelCoordinates: HexGridContextType['getPixelCoordinates'] = useCallback((col, row) => {
     const width = ROOT_3 * size
     const height = size * 1.5
