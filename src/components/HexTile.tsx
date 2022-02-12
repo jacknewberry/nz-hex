@@ -3,6 +3,8 @@ import { HexGroup } from './HexGroup'
 import React, { FC, useCallback } from 'react'
 import { useHexGrid } from './HexGrid'
 import styled from 'styled-components'
+import Tippy from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css' // optional
 
 export interface HexTileProps {
   col: number
@@ -16,7 +18,13 @@ export const HexTile: FC<HexTileProps> = ({ row, col, fill, name }) => {
     console.log(name)
   }, [name])
 
-  return <HexGroup col={col} row={row}><StyledHexagon size={size} fill={fill} onMouseOver={logName} /></HexGroup>
+  return (
+    <Tippy content='Tooltip' placement='right'>
+      <HexGroup col={col} row={row}>
+        <StyledHexagon size={size} fill={fill} onMouseOver={logName} />
+      </HexGroup>
+    </Tippy>
+  )
 }
 
 const StyledHexagon = styled(Hexagon)`
