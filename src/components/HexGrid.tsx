@@ -3,7 +3,7 @@ import { ROOT_3 } from './Hexagon'
 
 interface HexGridContextType {
   size: number
-  getPixelCoordinates: (col: number, row: number) => { x: number, y: number }
+  getPixelCoordinates: (column: number, row: number) => { x: number, y: number }
 }
 const HexGridContextDefault: HexGridContextType = {
   size: 15,

@@ -3,13 +3,15 @@ import { SvgArea } from '../components/SvgArea'
 import { HexGrid } from '../components/HexGrid'
 import { Wrapper } from '../pageSupport/index.styles'
 import { HexTile } from '../components/HexTile'
+import { nzElectoratesMaori2008 } from '../data/nzElectoratesMaori2008'
+import { nzElectorateResults2020 } from '../data/nzResults2020'
+import { GlobalStyle } from '../components/GlobalStyle'
 
 // styles
 const pageStyles: CSSProperties = {
   color: '#232129',
   paddingLeft: 96,
   paddingRight: 96,
-  fontFamily: '-apple-system, Roboto, sans-serif, serif',
   height: '100vh'
 }
 const headingStyles: CSSProperties = {
@@ -23,21 +25,21 @@ const svgStyles: CSSProperties = {
 }
 
 const IndexPage: FC = () => {
+  const hexes = nzElectoratesMaori2008
+  const results = nzElectorateResults2020
+
   return (
     <main style={pageStyles}>
+      <GlobalStyle />
       <title>NZ Hex</title>
       <h1 style={headingStyles}>
-        New Zealand Population 🇳🇿
+        New Zealand General Election 2020 🇳🇿
       </h1>
       <Wrapper>
         <SvgArea style={svgStyles}>
           {/* Hexgrid supports odd-r layout - odd rows to the right */}
           <HexGrid size={24}>
-            <HexTile col={1} row={2} fill='#004400' name='North Shore North' />
-            <HexTile col={1} row={3} fill='#006600' name='South Auckland' />
-            <HexTile col={2} row={4} fill='#008800' name='Waikato and Bays' />
-            <HexTile col={1} row={5} fill='#00aa00' name='Taranaki to Wellington' />
-            <HexTile col={0} row={7} fill='#00cc00' name='South Island' />
+            {Object.values(hexes).map(hex => <HexTile key={hex.id} {...hex} result={results[hex.id]} />)}
           </HexGrid>
         </SvgArea>
       </Wrapper>
