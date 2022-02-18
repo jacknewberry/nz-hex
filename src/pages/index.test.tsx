@@ -9,6 +9,6 @@ describe('when running', () => {
 
   it('has the header text', () => {
     render(<IndexPage />)
-    expect(screen.getByRole('heading')).toHaveTextContent(/New Zealand Population.*/)
+    expect(screen.getByRole('heading')).toHaveTextContent(/New Zealand General Election 2020.*/)
   })
 })

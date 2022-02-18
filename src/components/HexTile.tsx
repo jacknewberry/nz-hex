@@ -20,7 +20,11 @@ import 'tippy.js/themes/translucent.css'
 export interface ElectorateResult {
   electorateId: ElectorateId
   electorateName: string
-  candidateName: string
+  winner: {
+    fullName: string
+    firstName: string
+    lastName: string
+  }
   partyId: PartyId
   validVotes: number
   majority: number
@@ -35,13 +39,15 @@ export interface HexTileProps {
 export const HexTile: FC<HexTileProps> = ({ row, column, result }) => {
   const { size } = useHexGrid()
   const logName = useCallback(() => {
-    console.log(result.electorateName, result.candidateName)
+    console.log(result.electorateName, result.winner.fullName)
   }, [result.electorateName])
-  const fill = parties[result.partyId].primaryColor
+  const party = parties[result.partyId]
+  const fill = party.primaryColor
 
+  const tooltipContent = `${result.winner.firstName} ${result.winner.lastName} (${party.shortName})`
   return (
     <Tippy
-      content={<span>Tooltip</span>}
+      content={<span>{tooltipContent}</span>}
       placement='right'
       ignoreAttributes // docs say this improves performance
       animation='shift-away'
