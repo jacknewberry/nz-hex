@@ -1,13 +1,11 @@
 import React, { CSSProperties, FC } from 'react'
 import { SvgArea } from '../components/SvgArea'
 import { HexGrid } from '../components/HexGrid'
-import { Wrapper } from '../pageSupport/index.styles'
 import { HexTile } from '../components/HexTile'
-import { nzElectoratesMaori2008 } from '../data/nzElectoratesMaori2008'
-import { nzElectorateResults2020 } from '../data/nzResults2020'
 import { GlobalStyle } from '../components/GlobalStyle'
+import { hexData } from '../data/hexData'
+import styled from 'styled-components'
 
-// styles
 const pageStyles: CSSProperties = {
   color: '#232129',
   paddingLeft: 96,
@@ -24,9 +22,12 @@ const svgStyles: CSSProperties = {
   height: '100%'
 }
 
+const Wrapper = styled.div`
+  height: 60%;
+`
+
 const IndexPage: FC = () => {
-  const hexes = nzElectoratesMaori2008
-  const results = nzElectorateResults2020
+  const hexResultData = hexData.nzAllElectorates2020
 
   return (
     <main style={pageStyles}>
@@ -37,9 +38,8 @@ const IndexPage: FC = () => {
       </h1>
       <Wrapper>
         <SvgArea style={svgStyles}>
-          {/* Hexgrid supports odd-r layout - odd rows to the right */}
-          <HexGrid size={24}>
-            {Object.values(hexes).map(hex => <HexTile key={hex.id} {...hex} result={results[hex.id]} />)}
+          <HexGrid size={12}>
+            {hexResultData.map(hex => <HexTile key={hex.id} {...hex} />)}
           </HexGrid>
         </SvgArea>
       </Wrapper>

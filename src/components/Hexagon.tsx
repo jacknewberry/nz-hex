@@ -3,11 +3,9 @@ import React, { FC } from 'react'
 export const ROOT_3 = Math.sqrt(3)
 export interface HexagonProps extends React.SVGProps<SVGPolygonElement> {
   size: number
-  x?: number
-  y?: number
   fill: string
 }
-export const Hexagon: FC<HexagonProps> = ({ x = 0, y = 0, size, ...props }) => {
+export const Hexagon: FC<HexagonProps> = ({ size, ...props }) => {
   /*
               1
        6**         **2
@@ -17,7 +15,7 @@ export const Hexagon: FC<HexagonProps> = ({ x = 0, y = 0, size, ...props }) => {
        5**         **3
               4
      */
-  const shortSide = size * ROOT_3 / 2
+  const shortSide = (size * ROOT_3 / 2).toFixed(2)
 
   const points = [
     [0, -size],
@@ -31,7 +29,6 @@ export const Hexagon: FC<HexagonProps> = ({ x = 0, y = 0, size, ...props }) => {
   return (
     <polygon
       points={points}
-      transform={`translate(${x},${y})`}
       {...props}
     />
   )

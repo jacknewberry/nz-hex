@@ -1,0 +1,12 @@
+{
+	"layout":"odd-r",
+	"hexes": {
+		"HaurakiWaikato":{"n":"HaurakiWaikato","q":12,"r":10},
+		"IkaroaRawhiti":{"n":"IkaroaRawhiti","q":12,"r":9},
+		"TamakiMakaurau":{"n":"TamakiMakaurau","q":11,"r":11},
+		"TeTaiHauauru":{"n":"TeTaiHauauru","q":11,"r":9},
+		"TeTaiTokerau":{"n":"TeTaiTokerau","q":11,"r":12},
+		"TeTaiTonga":{"n":"TeTaiTonga","q":11,"r":8},
+		"Waiariki":{"n":"Waiariki","q":13,"r":10}
+	}
+}
