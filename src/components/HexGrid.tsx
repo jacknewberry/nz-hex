@@ -1,5 +1,16 @@
 import React, { FC, useCallback, useContext } from 'react'
 import { ROOT_3 } from './Hexagon'
+import Tippy, { useSingleton } from '@tippyjs/react'
+
+// plain Tippy:
+import 'tippy.js/dist/tippy.css'
+
+// shift-away animation:
+import 'tippy.js/animations/shift-away.css'
+import 'tippy.js/dist/svg-arrow.css'
+
+// theme:
+import 'tippy.js/themes/translucent.css'
 
 interface HexGridContextType {
   size: number
@@ -22,9 +33,27 @@ export const HexGrid: FC<{ size: number }> = ({ size, children }) => {
     }
   }, [size])
 
+  const [source, tippyTarget] = useSingleton()
+
   const value: HexGridContextType = {
     size,
-    getPixelCoordinates
+    getPixelCoordinates,
+    tippyTarget
   }
-  return <HexGridContext.Provider value={value}>{children}</HexGridContext.Provider>
+
+  return (
+    <HexGridContext.Provider value={value}>
+      <Tippy
+        singleton={source}
+        placement='right'
+        animation='shift-away'
+        theme='translucent'
+        // suppresses "aria-describedby" attribute which would be meaningless when on all hexes
+        aria={{ content: null }}
+        // docs say this improves performance
+        ignoreAttributes
+      />
+      {children}
+    </HexGridContext.Provider>
+  )
 }
