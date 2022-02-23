@@ -1,12 +1,11 @@
 import React, { forwardRef } from 'react'
 import { useHexGrid } from './HexGrid'
-import styled from 'styled-components'
 
 export interface HexGroupProps extends React.SVGProps<SVGGElement> {
   column: number
   row: number
 }
-const PlainHexGroup = forwardRef<SVGGElement, HexGroupProps>(({ column, row, children, ...props }, ref) => {
+export const HexGroup = forwardRef<SVGGElement, HexGroupProps>(({ column, row, children, ...props }, ref) => {
   const { getPixelCoordinates } = useHexGrid()
   const { x, y } = getPixelCoordinates(column, row)
 
@@ -20,9 +19,3 @@ const PlainHexGroup = forwardRef<SVGGElement, HexGroupProps>(({ column, row, chi
     </g>
   )
 })
-
-export const HexGroup = styled(PlainHexGroup)`
-  &:focus {
-    outline: none;
-  }
-`

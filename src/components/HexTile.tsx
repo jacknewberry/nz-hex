@@ -16,20 +16,28 @@ export const HexTile: FC<HexTileProps> = ({ hex: { row, column }, result }) => {
 
   const tooltipContent = `${result.winner.firstName} ${result.winner.lastName} (${party.shortName})`
   return (
-    <Tippy
-      singleton={tippyTarget}
-      content={<span>{tooltipContent}</span>}
-    >
-      <HexGroup column={column} row={row} data-testid='electorate'>
-        <StyledHexagon size={size} fill={fill} />
-      </HexGroup>
-    </Tippy>
+    <HexGroup column={column} row={row} data-testid='electorate'>
+      <Tippy
+        singleton={tippyTarget}
+        content={<>{result.electorateName}<br />{tooltipContent}</>}
+      >
+        <StyledHexagon size={size - 1} fill={fill} />
+      </Tippy>
+    </HexGroup>
   )
 }
 
 const StyledHexagon = styled(Hexagon)`
   cursor: pointer;
   transition: all 0.3s; // speed of return to normal
+
+  &:focus {
+    outline: none; // remove the default focus outline
+    stroke: #000;
+    stroke-width: 2px;
+    paint-order: stroke;
+    filter: brightness(130%);
+  }
 
   &:hover {
     transition: all 0s;

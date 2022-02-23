@@ -15,7 +15,7 @@ export const SvgArea: FC<SVGProps<SVGSVGElement>> = ({ children, ...props }) => 
   return (
     <svg
       ref={ref}
-      viewBox={`${-width / 2} 0 ${width} ${height}`}
+      viewBox={`${Math.round(-width / 2)} 0 ${width} ${height}`}
       preserveAspectRatio='xMidYMid meet'
       {...props}
     >{children}
