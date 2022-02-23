@@ -18,6 +18,6 @@ describe('when running', () => {
     const expectedNumberHexagons = countMaoriElectorates + countNonMaoriElectorates
 
     render(<IndexPage />)
-    expect(screen.findAllByTestId('electorate')).toEqual(expectedNumberHexagons)
+    expect(screen.getAllByTestId('electorate')).toHaveLength(expectedNumberHexagons)
   })
 })

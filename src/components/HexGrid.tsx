@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useContext } from 'react'
 import { ROOT_3 } from './Hexagon'
-import Tippy, { useSingleton } from '@tippyjs/react'
+import Tippy, { TippyProps, useSingleton } from '@tippyjs/react'
 
 // plain Tippy:
 import 'tippy.js/dist/tippy.css'
@@ -15,6 +15,7 @@ import 'tippy.js/themes/translucent.css'
 interface HexGridContextType {
   size: number
   getPixelCoordinates: (column: number, row: number) => { x: number, y: number }
+  tippyTarget?: TippyProps['singleton']
 }
 const HexGridContextDefault: HexGridContextType = {
   size: 15,

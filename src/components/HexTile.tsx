@@ -20,7 +20,7 @@ export const HexTile: FC<HexTileProps> = ({ hex: { row, column }, result }) => {
       singleton={tippyTarget}
       content={<span>{tooltipContent}</span>}
     >
-      <HexGroup column={column} row={row}>
+      <HexGroup column={column} row={row} data-testid='electorate'>
         <StyledHexagon size={size} fill={fill} />
       </HexGroup>
     </Tippy>

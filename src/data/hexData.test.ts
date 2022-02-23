@@ -14,7 +14,7 @@ describe('hexData', () => {
 
     const expectedIkaroaRawhiti: HexResult = {
       id: 'IkaroaRawhiti',
-      hex: { row: -9, column: 12 },
+      hex: { row: 7, column: 2 },
       result: {
         electorateName: 'Ikaroa-Rāwhiti',
         winner: {
