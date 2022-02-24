@@ -9,18 +9,17 @@ import Tippy from '@tippyjs/react'
 
 export interface HexTileProps extends HexResult {}
 
-export const HexTile = forwardRef<SVGGElement, HexTileProps>(({ hex: { row, column }, result }, ref) => {
-  const { size, tippyTarget } = useHexGrid()
+export const HexTile = forwardRef<SVGGElement, HexTileProps>(({ hex: { row, column }, result, index }, ref) => {
+  const { size, tippyTarget, callbackRef } = useHexGrid()
   const party = parties[result.partyId]
   const fill = party.primaryColor
 
   const tooltipContent = `${result.winner.firstName} ${result.winner.lastName} (${party.shortName})`
   return (
     <HexGroup
-      column={column}
-      row={row}
       data-testid='electorate'
-      ref={ref}
+      index={index}
+      ref={callbackRef(index, row, column, party.id)}
     >
       <Tippy
         singleton={tippyTarget}
