@@ -1,6 +1,6 @@
 import { Hexagon } from './Hexagon'
 import { HexGroup } from './HexGroup'
-import React, { FC } from 'react'
+import React, { FC, forwardRef } from 'react'
 import { useHexGrid } from './HexGrid'
 import styled from 'styled-components'
 import { parties } from '../data/parties'
@@ -9,23 +9,31 @@ import Tippy from '@tippyjs/react'
 
 export interface HexTileProps extends HexResult {}
 
-export const HexTile: FC<HexTileProps> = ({ hex: { row, column }, result }) => {
+export const HexTile = forwardRef<SVGGElement, HexTileProps>(({ hex: { row, column }, result }, ref) => {
   const { size, tippyTarget } = useHexGrid()
   const party = parties[result.partyId]
   const fill = party.primaryColor
 
   const tooltipContent = `${result.winner.firstName} ${result.winner.lastName} (${party.shortName})`
   return (
-    <HexGroup column={column} row={row} data-testid='electorate'>
+    <HexGroup
+      column={column}
+      row={row}
+      data-testid='electorate'
+      ref={ref}
+    >
       <Tippy
         singleton={tippyTarget}
         content={<>{result.electorateName}<br />{tooltipContent}</>}
       >
-        <StyledHexagon size={size - 1} fill={fill} />
+        <StyledHexagon
+          size={size - 1}
+          fill={fill}
+        />
       </Tippy>
     </HexGroup>
   )
-}
+})
 
 const StyledHexagon = styled(Hexagon)`
   cursor: pointer;
