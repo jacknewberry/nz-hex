@@ -1,54 +1,19 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
+## NZ Hex 🇳🇿
 
-## 🚀 Quick start
+### 🗒 Background
+This is an experiment at embedding D3 (https://d3js.org/) in React.
+Deployed here: https://nzhexmain.gatsbyjs.io/
 
-1.  **Create a Gatsby site.**
+New Zealand last held a general election in 2020. The country is divided into 72 electorates, each of whom elect one member of parliment. Each of the elected parties are represented by a different colour.
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+Toggling between the two views makes it easier to understand the relative number of MPs elected from each party.
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
 
-2.  **Start developing.**
+### ⚙️ Technical
+The challenge is that it is preferable for D3 to manipulate the DOM directly, but this doesn't fit easily into React's model of a virtual DOM.
 
-    Navigate into your new site’s directory and start it up.
+With some use cases it is reasoanble to have an emulation or conversion layer; and still use React to update the DOM. However animating even a small number of visual elements quickly deteriorates when it is tied to the React render cycle.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+I wanted to have a React style interface that uses tsx for elements in the D3 world. Callback refs are used to provide the d3 force simulation with direct access to the DOM node for each hexagon. The HexGrid containing the simulation is able to update the location of each node (HexTile) to create the animation.
 
-3.  **Open the code and start customizing!**
-
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.tsx` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+React is still aware of the nodes and they are represented in tsx, meaning I can use other react libraries like styled-components and Tippy.
