@@ -10,10 +10,8 @@ Toggling between the two views makes it easier to understand the relative number
 
 
 ### ⚙️ Technical
-The challenge is that it is preferable for D3 to manipulate the DOM directly, but this doesn't fit easily into React's model of a virtual DOM.
+The challenge is that it is preferable for D3 to manipulate the DOM directly, but this doesn't fit easily into React's model of a virtual DOM. Animating even a small number of visual elements quickly deteriorates when it is tied to the React render cycle.
 
-With some use cases it is reasoanble to have an emulation or conversion layer; and still use React to update the DOM. However animating even a small number of visual elements quickly deteriorates when it is tied to the React render cycle.
-
-I wanted to have a React style interface that uses tsx for elements in the D3 world. Callback refs are used to provide the d3 force simulation with direct access to the DOM node for each hexagon. The HexGrid containing the simulation is able to update the location of each node (HexTile) to create the animation.
+I wanted to have a React style interface that uses tsx for elements in the D3 world. Callback refs are used to provide the d3 force simulation with direct access to the DOM node of each hexagon. The `HexGrid` component containing the simulation is able to update the location of each `HexTile` node to create the animation.
 
 React is still aware of the nodes and they are represented in tsx, meaning I can use other react libraries like styled-components and Tippy.
